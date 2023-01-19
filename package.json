@@ -1,0 +1,24 @@
+{
+  "name": "wallet-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuelogu/wallet-generator.git"
+  },
+  "keywords": [],
+  "author": "Samuel Ogu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuelogu/wallet-generator/issues"
+  },
+  "homepage": "https://github.com/samuelogu/wallet-generator#readme",
+  "dependencies": {
+    "web3": "^1.8.1"
+  }
+}
