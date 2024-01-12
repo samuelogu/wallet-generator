@@ -1,5 +1,8 @@
 const { ethers } = require('ethers');
 const crypto = require('crypto');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 function encrypt(text, password) {
     const iv = crypto.randomBytes(16);
@@ -10,23 +13,11 @@ function encrypt(text, password) {
     encrypted += cipher.final('hex');
     const tag = cipher.getAuthTag();
 
-    // return { content: encrypted, tag, iv: iv.toString('hex') };
-    return encrypted;
+    // Concatenate content, tag, and iv
+    return `${encrypted}:${tag.toString('hex')}:${iv.toString('hex')}`;
 }
 
-function decrypt(encryptedData, password) {
-    const key = crypto.scryptSync(password, 'salt', 32);
-    const decipher = crypto.createDecipheriv('aes-256-gcm', key, Buffer.from(encryptedData.iv, 'hex'));
-    decipher.setAuthTag(Buffer.from(encryptedData.tag, 'hex'));
-
-    let decrypted = decipher.update(encryptedData.content, 'hex', 'utf-8');
-    decrypted += decipher.final('utf-8');
-
-    return decrypted;
-}
-
-// Example usage
-const password = 'fish';
+const password = process.env.PASSWORD;
 
 // Generate a random wallet
 const wallet = ethers.Wallet.createRandom();
@@ -39,11 +30,9 @@ const address = wallet.address;
 const encryptedPrivateKey = encrypt(privateKey, password)
 const encryptedMnemonic = encrypt(mnemonic, password)
 
-console.log(`Wallet Address: ${address}`)
 console.log(`Private Key: ${privateKey}`)
 console.log(`Mnemonic (12-word seed phrase): ${mnemonic}\n`)
 
+console.log(`Wallet Address: ${address}`)
 console.log(`Encrypted Private Key: ${encryptedPrivateKey}`)
 console.log(`Encrypted Mnemonic: ${encryptedMnemonic}`)
-
-
