@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/samuelogu/wallet-generator#readme",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "ethers": "^6.9.2",
     "web3": "^1.8.1"
   }
