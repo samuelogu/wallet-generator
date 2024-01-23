@@ -24,3 +24,7 @@ ENCRYPTED_MNEMONIC=
 ```
 
 Generate a new wallet address by running `npm run generate` in the project terminal.
+
+To decrypt your encrypted private key and mnemonic seed phase; update the `.env` file with values of the ENCRYPTED_PRIVATE_KEY and ENCRYPTED_MNEMONIC. Ensure that you use the same PASSWORD that was used for the encryption and run the command `npm run decrypt`
+
+> Disclaimer: This repository is for educational purposes. Do not use without doing your own research
